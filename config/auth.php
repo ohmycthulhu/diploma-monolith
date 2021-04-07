@@ -41,6 +41,10 @@ return [
             'provider' => 'users',
         ],
 
+        'nova' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -66,9 +70,9 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'admins' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => \App\Models\FM\Administrator::class,
         ],
 
         // 'users' => [
