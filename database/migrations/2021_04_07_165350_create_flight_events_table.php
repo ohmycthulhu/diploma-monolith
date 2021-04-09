@@ -26,6 +26,12 @@ class CreateFlightEventsTable extends Migration
       $table->smallInteger('status_next')
         ->default(0)
         ->comment("0 for waiting, 1 for boarding, 2 for flight, 3 for arrived");
+
+      $table->foreignId('administrator_id')
+        ->nullable()
+        ->references('id')
+        ->on('administrators');
+
       $table->softDeletes();
       $table->timestamps();
     });

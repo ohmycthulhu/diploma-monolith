@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Country #1",
+    "code": "caf",
+    "cities": [
+      {
+        "name": "City #1",
+        "airports": [
+          {
+            "name": "Airport #1",
+            "code": "arf"
+          },
+          {
+            "name": "Airport #2",
+            "code": "ars"
+          }
+        ]
+      },
+      {
+        "name": "City #2",
+        "airports": [
+          {
+            "name": "Airport #3",
+            "code": "azc"
+          },
+          {
+            "name": "Airport #4",
+            "code": "arh"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Country #2",
+    "code": "cas",
+    "cities": [
+      {
+        "name": "City #3",
+        "airports": [
+          {
+            "name": "Airport #5",
+            "code": "brf"
+          },
+          {
+            "name": "Airport #6",
+            "code": "brs"
+          }
+        ]
+      },
+      {
+        "name": "City #4",
+        "airports": [
+          {
+            "name": "Airport #7",
+            "code": "czc"
+          },
+          {
+            "name": "Airport #8",
+            "code": "crh"
+          }
+        ]
+      }
+    ]
+  }
+]

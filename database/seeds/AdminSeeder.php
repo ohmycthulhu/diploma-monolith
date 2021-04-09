@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 class AdminSeeder extends Seeder
 {
   protected $admins = [
-    ['username' => 'admin', 'password' => 'password']
+    ['username' => 'admin', 'password' => 'password', 'role_id' => 1]
   ];
   protected $model;
 

@@ -22,6 +22,26 @@ class Flight extends Model
     ];
 
     /**
+     * Method to set the approve status of the flight
+     *
+     * @param Administrator $admin
+     * @param int $status
+     *
+     * @return $this
+    */
+    public function setApproveStatus(Administrator $admin, int $status): self {
+      $prevStatus = $this->approve_status;
+      $this->events()
+        ->create([
+          'status_prev' => $prevStatus ?? 0,
+          'status_next' => $status ?? 0,
+          'administrator_id' => $admin->id,
+        ]);
+      $this->save();
+      return $this;
+    }
+
+    /**
      * Relation to airports
     */
 

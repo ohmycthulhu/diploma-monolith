@@ -19,7 +19,7 @@ class City extends Model
      * @return HasMany
     */
     public function airports(): HasMany {
-      return $this->hasMany(Airport::class, 'airport_id');
+      return $this->hasMany(Airport::class, 'city_id');
     }
 
     /**
