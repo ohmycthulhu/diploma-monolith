@@ -56,4 +56,19 @@ abstract class Resource extends NovaResource
     {
         return parent::relatableQuery($request, $query);
     }
+
+    public static function group()
+    {
+      return __(static::$group);
+    }
+
+    public static function label()
+    {
+      return __(parent::label());
+    }
+
+    public static function singularLabel()
+    {
+      return __(parent::singularLabel());
+    }
 }

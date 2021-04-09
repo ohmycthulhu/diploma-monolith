@@ -21,6 +21,10 @@ class Flight extends Model
       'administrator_id'
     ];
 
+    protected $casts = [
+      'flight_datetime' => 'datetime'
+    ];
+
     /**
      * Method to set the approve status of the flight
      *
@@ -37,6 +41,7 @@ class Flight extends Model
           'status_next' => $status ?? 0,
           'administrator_id' => $admin->id,
         ]);
+      $this->approve_status = $status;
       $this->save();
       return $this;
     }
