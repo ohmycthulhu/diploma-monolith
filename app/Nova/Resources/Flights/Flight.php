@@ -49,7 +49,8 @@ class Flight extends FlightBaseResource
         return [
             ID::make(__('ID'), 'id')->sortable(),
 
-          DateTime::make(__('Departure time'), 'flight_datetime')->sortable(),
+          DateTime::make(__('Departure time'), 'flight_datetime')
+            ->sortable(),
 
           Number::make(__('Duration in minutes'), 'duration')
             ->sortable()
@@ -60,11 +61,13 @@ class Flight extends FlightBaseResource
           $this->getApproveStatusField(__('Approval status'), 'approve_status'),
           $this->getFlightStatusField(__('Flight status'), 'flight_status'),
 
-          BelongsTo::make(__('Administrator'), 'administrator', Administrator::class),
+          BelongsTo::make(__('Administrator'), 'administrator', Administrator::class)
+            ->readonly(),
           BelongsTo::make(__('Departure from'), 'airportDepart', Airport::class),
           BelongsTo::make(__('Arrives to'), 'airportArrival', Airport::class),
 
-          HasMany::make(__('Events'), 'events', FlightEvent::class),
+          HasMany::make(__('Events'), 'events', FlightEvent::class)
+            ->readonly(),
         ];
     }
 

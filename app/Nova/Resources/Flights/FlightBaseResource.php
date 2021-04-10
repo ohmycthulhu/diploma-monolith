@@ -28,6 +28,7 @@ abstract class FlightBaseResource extends Resource
          0 => __('Waiting'),
          1 => __('Approved')
       ])
+      ->readonly()
       ->displayUsingLabels()
       ->sortable();
   }
@@ -48,6 +49,7 @@ abstract class FlightBaseResource extends Resource
         2 => __('In air'),
         3 => __('Arrived'),
       ])
+      ->readonly()
       ->displayUsingLabels()
       ->sortable();
   }

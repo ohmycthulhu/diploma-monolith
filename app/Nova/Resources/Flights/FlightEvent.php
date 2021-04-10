@@ -32,6 +32,8 @@ class FlightEvent extends FlightBaseResource
     'id',
   ];
 
+  public static $displayInNavigation = false;
+
   /**
    * Get the fields displayed by the resource.
    *
@@ -43,12 +45,21 @@ class FlightEvent extends FlightBaseResource
     return [
       ID::make(__('ID'), 'id')->sortable(),
 
-      BelongsTo::make(__('Flight'), 'flight', Flight::class)->sortable(),
+      BelongsTo::make(__('Flight'), 'flight', Flight::class)
+        ->readonly()
+        ->required()
+        ->sortable(),
 
-      $this->getApproveStatusField(__('Previous status'), 'status_prev'),
-      $this->getApproveStatusField(__('Next status'), 'status_next'),
+      $this->getApproveStatusField(__('Previous status'), 'status_prev')
+        ->required()
+        ->readonly(),
+      $this->getApproveStatusField(__('Next status'), 'status_next')
+        ->required()
+        ->readonly(),
 
-      DateTime::make(__('Datetime'), 'created_at')->sortable(),
+      DateTime::make(__('Datetime'), 'created_at')
+        ->required()
+        ->sortable(),
     ];
   }
 

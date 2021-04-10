@@ -56,7 +56,8 @@ class Role extends Resource
       $this->getPermissionField(__('Can see flight\'s details?'), 'can_see_flight_details'),
       $this->getPermissionField(__('Can manage users?'), 'can_manage_users'),
 
-      HasMany::make(__('Administrators'), 'administrators', Administrator::class),
+      HasMany::make(__('Administrators'), 'administrators', Administrator::class)
+        ->canSeeWhen('manageUsers'),
     ];
   }
 
