@@ -2,6 +2,8 @@
 
 namespace App\Nova\Resources\Flights;
 
+use App\Nova\Actions\ChangeFlightApprovalAction;
+use App\Nova\Filters\ApproveStatusFilter;
 use App\Nova\Resources\Airport;
 use App\Nova\Resources\FM\Administrator;
 use Illuminate\Http\Request;
@@ -90,7 +92,9 @@ class Flight extends FlightBaseResource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+          ApproveStatusFilter::make(),
+        ];
     }
 
     /**
@@ -112,6 +116,9 @@ class Flight extends FlightBaseResource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+          ChangeFlightApprovalAction::make()
+            ->canSeeWhen('approveFlights')
+        ];
     }
 }

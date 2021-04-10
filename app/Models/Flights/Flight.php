@@ -4,6 +4,7 @@ namespace App\Models\Flights;
 
 use App\Models\FM\Administrator;
 use App\Models\Location\Airport;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -35,14 +36,16 @@ class Flight extends Model
     */
     public function setApproveStatus(Administrator $admin, int $status): self {
       $prevStatus = $this->approve_status;
-      $this->events()
-        ->create([
-          'status_prev' => $prevStatus ?? 0,
-          'status_next' => $status ?? 0,
-          'administrator_id' => $admin->id,
-        ]);
-      $this->approve_status = $status;
-      $this->save();
+      if ($prevStatus !== $status) {
+        $this->events()
+          ->create([
+            'status_prev' => $prevStatus ?? 0,
+            'status_next' => $status ?? 0,
+            'administrator_id' => $admin->id,
+          ]);
+        $this->approve_status = $status;
+        $this->save();
+      }
       return $this;
     }
 
@@ -84,5 +87,17 @@ class Flight extends Model
     */
     public function administrator(): BelongsTo {
       return $this->belongsTo(Administrator::class, 'administrator_id');
+    }
+
+    /**
+     * Scope by approve status
+     *
+     * @param Builder $query
+     * @param int $status
+     *
+     * @return Builder
+    */
+    public function scopeApproveStatus(Builder $query, int $status): Builder {
+      return $query->where('approve_status', $status);
     }
 }
