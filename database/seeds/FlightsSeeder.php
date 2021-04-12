@@ -58,6 +58,14 @@ class FlightsSeeder extends Seeder
 
       // Change flight status
       $flight->setApproveStatus($adminApp, $status);
+
+      // Add ticket types
+      $flight->ticketTypes()
+        ->createMany(
+          factory(\App\Models\Flights\TicketType::class, 3)
+            ->make()
+            ->toArray()
+        );
     }
   }
 }

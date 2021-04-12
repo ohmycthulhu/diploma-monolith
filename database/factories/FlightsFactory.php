@@ -11,3 +11,11 @@ $factory->define(\App\Models\Flights\Flight::class, function (Faker $faker) {
     'description' => $faker->text(500),
   ];
 });
+
+$factory->define(\App\Models\Flights\TicketType::class, function (Faker $faker) {
+  return [
+    'seats' => $faker->randomNumber(2),
+    'price' => $faker->randomFloat(3, 1, 250),
+    'name' => $faker->words(3, true),
+  ];
+});

@@ -37,7 +37,7 @@ class Flight extends Model
     public function setApproveStatus(Administrator $admin, int $status): self {
       $prevStatus = $this->approve_status;
       if ($prevStatus !== $status) {
-        $this->events()
+        $this->approveStatusChanges()
           ->create([
             'status_prev' => $prevStatus ?? 0,
             'status_next' => $status ?? 0,
@@ -72,12 +72,21 @@ class Flight extends Model
   }
 
     /**
+     * Relation to approve status changes
+     *
+     * @return HasMany
+    */
+    public function approveStatusChanges(): HasMany {
+      return $this->hasMany(FlightApproveStatusChange::class, 'flight_id');
+    }
+
+    /**
      * Relation to events
      *
      * @return HasMany
     */
     public function events(): HasMany {
-      return $this->hasMany(FlightApproveStatusChange::class, 'flight_id');
+      return $this->hasMany(FlightEvent::class, 'flight_id');
     }
 
     /**
@@ -87,6 +96,15 @@ class Flight extends Model
     */
     public function administrator(): BelongsTo {
       return $this->belongsTo(Administrator::class, 'administrator_id');
+    }
+
+    /**
+     * Relation to ticket types
+     *
+     * @return HasMany
+    */
+    public function ticketTypes(): HasMany {
+      return $this->hasMany(TicketType::class, 'flight_id');
     }
 
     /**

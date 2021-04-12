@@ -68,8 +68,12 @@ class Flight extends FlightBaseResource
           BelongsTo::make(__('Departure from'), 'airportDepart', Airport::class),
           BelongsTo::make(__('Arrives to'), 'airportArrival', Airport::class),
 
+          HasMany::make(__('Status history'), 'approveStatusChanges', FlightApproveStatusChange::class)
+            ->readonly(),
+
           HasMany::make(__('Events'), 'events', FlightApproveStatusChange::class)
             ->readonly(),
+          HasMany::make(__('Ticket Types'), 'ticketTypes', TicketType::class),
         ];
     }
 
