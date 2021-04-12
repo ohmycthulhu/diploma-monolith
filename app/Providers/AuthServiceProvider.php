@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Flights\Flight;
-use App\Models\Flights\FlightEvent;
+use App\Models\Flights\FlightApproveStatusChange;
 use App\Models\FM\Administrator;
 use App\Models\FM\Role;
 use App\Policies\Flights\FlightEventPolicy;
@@ -22,7 +22,7 @@ class AuthServiceProvider extends ServiceProvider
    */
   protected $policies = [
     Flight::class => FlightPolicy::class,
-    FlightEvent::class => FlightEventPolicy::class,
+    FlightApproveStatusChange::class => FlightEventPolicy::class,
     Administrator::class => AdministratorPolicy::class,
     Role::class => RolePolicy::class,
   ];

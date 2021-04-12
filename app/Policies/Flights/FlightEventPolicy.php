@@ -3,7 +3,7 @@
 namespace App\Policies\Flights;
 
 use App\Models\FM\Administrator;
-use App\Models\Flights\FlightEvent;
+use App\Models\Flights\FlightApproveStatusChange;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Gate;
 
@@ -26,10 +26,10 @@ class FlightEventPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\FM\Administrator  $administrator
-     * @param  \App\Models\Flights\FlightEvent  $flightEvent
+     * @param  \App\Models\Flights\FlightApproveStatusChange  $flightEvent
      * @return mixed
      */
-    public function view(Administrator $administrator, FlightEvent $flightEvent)
+    public function view(Administrator $administrator, FlightApproveStatusChange $flightEvent)
     {
         return $this->viewAny($administrator);
     }
@@ -49,10 +49,10 @@ class FlightEventPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\FM\Administrator  $administrator
-     * @param  \App\Models\Flights\FlightEvent  $flightEvent
+     * @param  \App\Models\Flights\FlightApproveStatusChange  $flightEvent
      * @return mixed
      */
-    public function update(Administrator $administrator, FlightEvent $flightEvent)
+    public function update(Administrator $administrator, FlightApproveStatusChange $flightEvent)
     {
       return $this->viewAny($administrator);
     }
@@ -61,10 +61,10 @@ class FlightEventPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\FM\Administrator  $administrator
-     * @param  \App\Models\Flights\FlightEvent  $flightEvent
+     * @param  \App\Models\Flights\FlightApproveStatusChange  $flightEvent
      * @return mixed
      */
-    public function delete(Administrator $administrator, FlightEvent $flightEvent)
+    public function delete(Administrator $administrator, FlightApproveStatusChange $flightEvent)
     {
       return $this->viewAny($administrator);
     }
@@ -73,10 +73,10 @@ class FlightEventPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\FM\Administrator  $administrator
-     * @param  \App\Models\Flights\FlightEvent  $flightEvent
+     * @param  \App\Models\Flights\FlightApproveStatusChange  $flightEvent
      * @return mixed
      */
-    public function restore(Administrator $administrator, FlightEvent $flightEvent)
+    public function restore(Administrator $administrator, FlightApproveStatusChange $flightEvent)
     {
       return $this->viewAny($administrator);
     }
@@ -85,10 +85,10 @@ class FlightEventPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\FM\Administrator  $administrator
-     * @param  \App\Models\Flights\FlightEvent  $flightEvent
+     * @param  \App\Models\Flights\FlightApproveStatusChange  $flightEvent
      * @return mixed
      */
-    public function forceDelete(Administrator $administrator, FlightEvent $flightEvent)
+    public function forceDelete(Administrator $administrator, FlightApproveStatusChange $flightEvent)
     {
       return $this->viewAny($administrator);
     }

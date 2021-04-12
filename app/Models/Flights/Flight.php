@@ -77,7 +77,7 @@ class Flight extends Model
      * @return HasMany
     */
     public function events(): HasMany {
-      return $this->hasMany(FlightEvent::class, 'flight_id');
+      return $this->hasMany(FlightApproveStatusChange::class, 'flight_id');
     }
 
     /**

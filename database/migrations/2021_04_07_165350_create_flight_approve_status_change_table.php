@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFlightEventsTable extends Migration
+class CreateFlightApproveStatusChangeTable extends Migration
 {
   /**
    * Run the migrations.
@@ -13,7 +13,7 @@ class CreateFlightEventsTable extends Migration
    */
   public function up()
   {
-    Schema::create('flight_events', function (Blueprint $table) {
+    Schema::create('flight_approve_status_changes', function (Blueprint $table) {
       $table->id();
       $table->foreignId('flight_id')
         ->references('id')
@@ -44,6 +44,6 @@ class CreateFlightEventsTable extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('flight_events');
+    Schema::dropIfExists('flight_approve_status_changes');
   }
 }
