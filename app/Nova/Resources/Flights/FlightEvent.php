@@ -3,6 +3,7 @@
 namespace App\Nova\Resources\Flights;
 
 use App\Nova\Resource;
+use App\Nova\Resources\Airport\Employee;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
@@ -62,6 +63,8 @@ class FlightEvent extends FlightBaseResource
       DateTime::make(__('Datetime'), 'created_at')
         ->required()
         ->sortable(),
+
+      BelongsTo::make(__('Employee'), 'employee', Employee::class),
     ];
   }
 

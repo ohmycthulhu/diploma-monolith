@@ -28,7 +28,11 @@ class CreateFlightEventsTable extends Migration
         ->default(0)
         ->comment("0 for waiting, 1 for boarding, 2 for flight, 3 for arrived");
 
-      // TODO: Add foreign id to moderator
+      $table->foreignId('employee_id')
+        ->nullable()
+        ->references('id')
+        ->on('employees')
+        ->nullOnDelete();
 
       $table->softDeletes();
       $table->timestamps();
