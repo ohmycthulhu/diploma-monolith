@@ -2,6 +2,7 @@
 
 namespace App\Models\Location;
 
+use App\Models\Airport\Employee;
 use App\Models\Flights\Flight;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -39,5 +40,14 @@ class Airport extends Model
     */
     public function flightsTo(): HasMany {
       return $this->hasMany(Flight::class, 'arriv_id');
+    }
+
+    /**
+     * Relation to employees
+     *
+     * @return HasMany
+    */
+    public function employees(): HasMany {
+      return $this->hasMany(Employee::class, 'airport_id');
     }
 }

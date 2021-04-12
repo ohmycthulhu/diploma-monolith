@@ -12,6 +12,7 @@ class CreateRolesTable extends Migration
     'can_approve_flights',
     'can_see_flight_details',
     'can_manage_users',
+    'can_manage_employees',
   ];
     /**
      * Run the migrations.

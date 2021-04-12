@@ -3,6 +3,7 @@
 namespace App\Nova\Resources;
 
 use App\Nova\Resource;
+use App\Nova\Resources\Airport\Employee;
 use App\Nova\Resources\Flights\Flight;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
@@ -54,6 +55,7 @@ class Airport extends Resource
 
           BelongsTo::make(__('City'), 'city', City::class),
 
+          HasMany::make(__('Employees'), 'employees', Employee::class),
           HasMany::make(__('Departing flights'), 'flightsFrom', Flight::class),
           HasMany::make(__('Arriving flights'), 'flightsTo', Flight::class),
         ];

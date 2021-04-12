@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Nova\Resources\FM;
+namespace App\Nova\Resources\Airport;
 
 use App\Nova\Resource;
+use App\Nova\Resources\Airport;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\Field;
-use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
 
-class Role extends Resource
+class Employee extends Resource
 {
   /**
    * The model the resource corresponds to.
    *
    * @var string
    */
-  public static $model = \App\Models\FM\Role::class;
+  public static $model = \App\Models\Airport\Employee::class;
 
   /**
    * The single value that should be used to represent the resource when being displayed.
@@ -32,10 +32,10 @@ class Role extends Resource
    * @var array
    */
   public static $search = [
-    'id', 'name',
+    'id', 'name', 'email'
   ];
 
-  public static $group = 'Users';
+  public static $group = 'Airport';
 
   /**
    * Get the fields displayed by the resource.
@@ -48,32 +48,16 @@ class Role extends Resource
     return [
       ID::make(__('ID'), 'id')->sortable(),
 
-      Text::make(__('Name'), 'name')->sortable(),
+      Text::make(__('Name'), 'name')
+        ->sortable(),
 
-      $this->getPermissionField(__('Can see flights?'), 'can_see_flights'),
-      $this->getPermissionField(__('Can create flights?'), 'can_create_flights'),
-      $this->getPermissionField(__('Can approve flights?'), 'can_approve_flights'),
-      $this->getPermissionField(__('Can see flight\'s details?'), 'can_see_flight_details'),
-      $this->getPermissionField(__('Can manage users?'), 'can_manage_users'),
-      $this->getPermissionField(__('Can manage employees?'), 'can_manage_employees'),
+      Text::make(__('Email'), 'email')
+        ->sortable(),
 
-      HasMany::make(__('Administrators'), 'administrators', Administrator::class)
-        ->canSeeWhen('manageUsers'),
+      Password::make(__('Password'), 'password'),
+
+      BelongsTo::make(__('Airport'), 'airport', Airport::class),
     ];
-  }
-
-  /**
-   * Method to get the field for permission
-   *
-   * @param string $name
-   * @param string $column
-   *
-   * @return Field
-   */
-  protected function getPermissionField(string $name, string $column): Field
-  {
-    return Boolean::make($name, $column)
-      ->sortable();
   }
 
   /**

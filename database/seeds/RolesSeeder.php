@@ -13,6 +13,7 @@ class RolesSeeder extends Seeder
       'can_approve_flights' => true,
       'can_see_flight_details' => true,
       'can_manage_users' => true,
+      'can_manage_employees' => true,
     ],
     [
       'id' => 2,
@@ -22,6 +23,7 @@ class RolesSeeder extends Seeder
       'can_approve_flights' => false,
       'can_see_flight_details' => true,
       'can_manage_users' => false,
+      'can_manage_employees' => false,
     ],
     [
       'id' => 3,
@@ -31,6 +33,7 @@ class RolesSeeder extends Seeder
       'can_approve_flights' => false,
       'can_see_flight_details' => true,
       'can_manage_users' => false,
+      'can_manage_employees' => false,
     ]
   ];
 

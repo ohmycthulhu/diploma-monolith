@@ -60,6 +60,10 @@ class AuthServiceProvider extends ServiceProvider
       'manageUsers',
       $this->getContainsRoleCallback('can_manage_users')
     );
+    Gate::define(
+      'manageEmployees',
+      $this->getContainsRoleCallback('can_manage_employees')
+    );
   }
 
   /**
