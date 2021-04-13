@@ -108,6 +108,25 @@ class Flight extends Model
     }
 
     /**
+     * Relation to bookings
+     *
+     * @return HasMany
+    */
+    public function bookings(): HasMany {
+      return $this->hasMany(Booking::class, 'flight_id');
+    }
+
+    /**
+     * Relation to booking seats
+     *
+     * @return HasMany
+    */
+    public function seats(): HasMany {
+      return $this->hasMany(BookingSeat::class, 'flight_id');
+    }
+
+
+    /**
      * Scope by approve status
      *
      * @param Builder $query
