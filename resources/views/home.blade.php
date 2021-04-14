@@ -221,222 +221,78 @@
 
                 <!-- Button -->
                 <div class="position-relative px-3 u-header__login-form dropdown-connector-xl u-header__topbar-divider">
-                    <a id="signUpDropdownInvoker" href="javascript:;" class="d-flex align-items-center text-white py-3"
-                       aria-controls="signUpDropdown" aria-haspopup="true" aria-expanded="true"
-                       data-unfold-event="click" data-unfold-target="#signUpDropdown" data-unfold-type="css-animation"
-                       data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true"
-                       data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
-                        <i class="flaticon-user mr-2 ml-1 font-size-18"></i>
-                        <span class="d-inline-block font-size-14 mr-1">Sign in or Register</span>
-                    </a>
-                    <div id="signUpDropdown" class="dropdown-menu dropdown-unfold dropdown-menu-right py-0 mt-0"
-                         aria-labelledby="signUpDropdownInvoker" style="min-width: 500px;">
-                        <div class="card rounded-xs">
-                            <div>
-                                <!-- Login -->
-                                <form novalidate="novalidate"
-                                      method="post"
-                                      id="login"
-                                      style="opacity: 1;"
-                                      action="{{ route('login') }}"
-                                      enctype="multipart/form-data"
-                                      data-target-group="idForm"
-                                      class="js-validate animated fadeIn">
+                    @guest
+                        <a id="signUpDropdownInvoker" href="javascript:;"
+                           class="d-flex align-items-center text-white py-3"
+                           aria-controls="signUpDropdown" aria-haspopup="true" aria-expanded="true"
+                           data-unfold-event="click" data-unfold-target="#signUpDropdown"
+                           data-unfold-type="css-animation"
+                           data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true"
+                           data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
+                            <i class="flaticon-user mr-2 ml-1 font-size-18"></i>
+                            <span class="d-inline-block font-size-14 mr-1">Sign in or Register</span>
+                        </a>
+                        <div id="signUpDropdown" class="dropdown-menu dropdown-unfold dropdown-menu-right py-0 mt-0"
+                             aria-labelledby="signUpDropdownInvoker" style="min-width: 500px;">
+                            <div class="card rounded-xs">
+                                <div>
+                                    <!-- Login -->
+                                    <form novalidate="novalidate"
+                                          method="post"
+                                          id="login"
+                                          style="opacity: 1;"
+                                          action="{{ route('login') }}"
+                                          enctype="multipart/form-data"
+                                          data-target-group="idForm"
+                                          class="js-validate animated fadeIn">
                                     @csrf
                                     <!-- Header -->
-                                    <div class="card-header text-center">
-                                        <h3 class="h5 mb-0 font-weight-semi-bold">Login</h3>
-                                    </div>
-                                    <!-- End Header -->
-                                    <div class="card-body pt-6 pb-4">
-                                        <!-- Form Group -->
-                                        <div class="form-group pb-1">
-                                            <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                <label class="sr-only" for="signinSrEmail">Email</label>
-                                                <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                    <input type="email" class="form-control" name="email"
-                                                           id="signinSrEmail" placeholder="Email Or Username"
-                                                           aria-label="Email Or Username" aria-describedby="signinEmail"
-                                                           required="" data-msg="Please enter a valid email address."
-                                                           data-error-class="u-has-error"
-                                                           data-success-class="u-has-success">
-                                                    <div class="input-group-append">
-                                                                    <span class="input-group-text" id="signinEmail">
-                                                                        <span class="far fa-envelope font-size-20"></span>
-                                                                    </span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="card-header text-center">
+                                            <h3 class="h5 mb-0 font-weight-semi-bold">Login</h3>
                                         </div>
-                                        <!-- End Form Group -->
-                                        <!-- Form Group -->
-                                        <div class="form-group pb-1">
-                                            <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                <label class="sr-only" for="signinSrPassword">Password</label>
-                                                <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                    <input type="password" class="form-control" name="password"
-                                                           id="signinSrPassword" placeholder="Password"
-                                                           aria-label="Password" aria-describedby="signinPassword"
-                                                           required=""
-                                                           data-msg="Your password is invalid. Please try again."
-                                                           data-error-class="u-has-error"
-                                                           data-success-class="u-has-success">
-                                                    <div class="input-group-prepend">
-                                                                    <span class="input-group-text" id="signinPassword">
-                                                                        <span class="flaticon-password font-size-20"></span>
-                                                                    </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Form Group -->
-                                        <div class="mb-3 pb-1">
-                                            <button type="submit"
-                                                    class="btn btn-md btn-block btn-blue-1 rounded-xs font-weight-bold transition-3d-hover">
-                                                Login
-                                            </button>
-                                        </div>
-                                        <div class="d-flex justify-content-between mb-1">
-                                            <div class="custom-control custom-checkbox custom-control-inline">
-                                                <input type="checkbox" id="customCheckboxInline1"
-                                                       name="customCheckboxInline1" class="custom-control-input">
-                                                <label class="custom-control-label" for="customCheckboxInline1">Remember
-                                                    me</label>
-                                            </div>
-                                            {{--                                            <a class="js-animation-link text-primary font-size-14" href="javascript:;"--}}
-                                            {{--                                               data-target="#forgotPassword" data-link-group="idForm"--}}
-                                            {{--                                               data-animation-in="fadeIn"><u>Forgot Password?</u></a>--}}
-                                        </div>
-                                    </div>
-                                    <div class="card-footer p-0">
-                                        {{--                                        <div class="card-footer__top border-bottom border-color-8 py-3">--}}
-                                        {{--                                            <div class="text-center mt-2 mb-4 pb-1">--}}
-                                        {{--                                                <span class="d-block text-gray-1 fontsize-14">or continue with</span>--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                            <div class="d-flex mb-3">--}}
-                                        {{--                                                <a class="btn btn-block btn-sm btn-facebook transition-3d-hover"--}}
-                                        {{--                                                   href="#">--}}
-                                        {{--                                                    <span class="fab fa-facebook-f mr-2"></span>--}}
-                                        {{--                                                    Facebook--}}
-                                        {{--                                                </a>--}}
-                                        {{--                                                <a class="btn btn-block btn-sm btn-twitter transition-3d-hover ml-5 mt-0"--}}
-                                        {{--                                                   href="#">--}}
-                                        {{--                                                    <span class="fab fa-twitter mr-2"></span>--}}
-                                        {{--                                                    Twitter--}}
-                                        {{--                                                </a>--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        </div>--}}
-
-                                        <div class="card-footer__bottom p-4 text-center font-size-14">
-                                            <span class="text-gray-1">Do not have an account?</span>
-                                            <a class="js-animation-link font-weight-bold" href="javascript:;"
-                                               data-target="#signup" data-link-group="idForm"
-                                               data-animation-in="fadeIn">Sign Up</a>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- End Login -->
-
-                            <!-- Signup -->
-                            <div id="signup" style="opacity: 0; display: none;" data-target-group="idForm">
-                                <!-- Header -->
-                                <div class="card-header text-center">
-                                    <h3 class="h5 mb-0 font-weight-semi-bold">Register</h3>
-                                </div>
-                                <!-- End Header -->
-                                <div class="card-body pt-5 pb-4">
-                                    <form class="tab-content"
-                                          method="POST"
-                                          enctype="multipart/form-data"
-                                          action="{{ route('registration') }}">
-                                        @csrf
-                                        <div class="tab-pane fade active show" id="pills-one-code-sample"
-                                             role="tabpanel" aria-labelledby="pills-one-code-sample-tab">
-                                            <!-- Form Group -->
-                                        {{--                                                <div class="form-group pb-1">--}}
-                                        {{--                                                    <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">--}}
-                                        {{--                                                        <label class="sr-only" for="uname">User Name</label>--}}
-                                        {{--                                                        <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">--}}
-                                        {{--                                                            <input type="text" class="form-control" name="uname"--}}
-                                        {{--                                                                   id="uname" placeholder="User Name"--}}
-                                        {{--                                                                   aria-label="User Name" aria-describedby="username"--}}
-                                        {{--                                                                   required=""--}}
-                                        {{--                                                                   data-msg="Please enter a valid user name."--}}
-                                        {{--                                                                   data-error-class="u-has-error"--}}
-                                        {{--                                                                   data-success-class="u-has-success">--}}
-                                        {{--                                                            <div class="input-group-append">--}}
-                                        {{--                                                                            <span class="input-group-text"--}}
-                                        {{--                                                                                  id="username">--}}
-                                        {{--                                                                                <span class="flaticon-user font-size-20"></span>--}}
-                                        {{--                                                                            </span>--}}
-                                        {{--                                                            </div>--}}
-                                        {{--                                                        </div>--}}
-                                        {{--                                                    </div>--}}
-                                        {{--                                                </div>--}}
-                                        <!-- End Form Group -->
+                                        <!-- End Header -->
+                                        <div class="card-body pt-6 pb-4">
+                                            @error('login')
+                                            <div class="text-danger text-center">{{ $message }}</div>
+                                        @enderror
                                             <!-- Form Group -->
                                             <div class="form-group pb-1">
                                                 <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                    <label class="sr-only" for="name">Full Name</label>
-                                                    <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                        <input type="text" class="form-control" name="name"
-                                                               id="name" placeholder="Full Name"
-                                                               aria-label="Full Name" aria-describedby="normalname"
-                                                               required="" data-msg="Please enter a valid name."
-                                                               data-error-class="u-has-error"
-                                                               data-success-class="u-has-success">
-                                                        <div class="input-group-append">
-                                                                            <span class="input-group-text"
-                                                                                  id="normalname">
-                                                                                <span class="flaticon-browser-1 font-size-20"></span>
-                                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- End Form Group -->
-
-                                            <!-- Form Group -->
-                                            <div class="form-group pb-1">
-                                                <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                    <label class="sr-only" for="signupSrEmail">Email</label>
+                                                    <label class="sr-only" for="signinSrEmail">Email</label>
                                                     <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
                                                         <input type="email" class="form-control" name="email"
-                                                               id="signupSrEmail" placeholder="Email"
-                                                               aria-label="Email" aria-describedby="signupEmail"
+                                                               id="signinSrEmail" placeholder="Email Or Username"
+                                                               aria-label="Email Or Username"
+                                                               aria-describedby="signinEmail"
                                                                required=""
                                                                data-msg="Please enter a valid email address."
                                                                data-error-class="u-has-error"
                                                                data-success-class="u-has-success">
                                                         <div class="input-group-append">
-                                                                            <span class="input-group-text"
-                                                                                  id="signupEmail">
-                                                                                <span class="far fa-envelope font-size-20"></span>
-                                                                            </span>
+                                                                    <span class="input-group-text" id="signinEmail">
+                                                                        <span class="far fa-envelope font-size-20"></span>
+                                                                    </span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- End Form Group -->
-
                                             <!-- Form Group -->
                                             <div class="form-group pb-1">
                                                 <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                    <label class="sr-only" for="signupSrPassword">Password</label>
+                                                    <label class="sr-only" for="signinSrPassword">Password</label>
                                                     <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
                                                         <input type="password" class="form-control" name="password"
-                                                               id="signupSrPassword" placeholder="Password"
-                                                               aria-label="Password"
-                                                               aria-describedby="signupPassword" required=""
+                                                               id="signinSrPassword" placeholder="Password"
+                                                               aria-label="Password" aria-describedby="signinPassword"
+                                                               required=""
                                                                data-msg="Your password is invalid. Please try again."
                                                                data-error-class="u-has-error"
                                                                data-success-class="u-has-success">
                                                         <div class="input-group-prepend">
-                                                                            <span class="input-group-text"
-                                                                                  id="signupPassword">
-                                                                                <span class="flaticon-password font-size-20"></span>
-                                                                            </span>
+                                                                    <span class="input-group-text" id="signinPassword">
+                                                                        <span class="flaticon-password font-size-20"></span>
+                                                                    </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -445,97 +301,259 @@
                                             <div class="mb-3 pb-1">
                                                 <button type="submit"
                                                         class="btn btn-md btn-block btn-blue-1 rounded-xs font-weight-bold transition-3d-hover">
-                                                    Register
+                                                    Login
                                                 </button>
                                             </div>
                                             <div class="d-flex justify-content-between mb-1">
                                                 <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" id="customCheckboxInline2"
-                                                           name="customCheckboxInline2"
-                                                           class="custom-control-input">
-                                                    <label class="custom-control-label" for="customCheckboxInline2">I
-                                                        have read and accept the <a href="#">Terms and Privacy
-                                                            Policy</a></label>
+                                                    <input type="checkbox" id="customCheckboxInline1"
+                                                           name="customCheckboxInline1" class="custom-control-input">
+                                                    <label class="custom-control-label" for="customCheckboxInline1">Remember
+                                                        me</label>
                                                 </div>
+                                                {{--                                            <a class="js-animation-link text-primary font-size-14" href="javascript:;"--}}
+                                                {{--                                               data-target="#forgotPassword" data-link-group="idForm"--}}
+                                                {{--                                               data-animation-in="fadeIn"><u>Forgot Password?</u></a>--}}
+                                            </div>
+                                        </div>
+                                        <div class="card-footer p-0">
+                                            {{--                                        <div class="card-footer__top border-bottom border-color-8 py-3">--}}
+                                            {{--                                            <div class="text-center mt-2 mb-4 pb-1">--}}
+                                            {{--                                                <span class="d-block text-gray-1 fontsize-14">or continue with</span>--}}
+                                            {{--                                            </div>--}}
+                                            {{--                                            <div class="d-flex mb-3">--}}
+                                            {{--                                                <a class="btn btn-block btn-sm btn-facebook transition-3d-hover"--}}
+                                            {{--                                                   href="#">--}}
+                                            {{--                                                    <span class="fab fa-facebook-f mr-2"></span>--}}
+                                            {{--                                                    Facebook--}}
+                                            {{--                                                </a>--}}
+                                            {{--                                                <a class="btn btn-block btn-sm btn-twitter transition-3d-hover ml-5 mt-0"--}}
+                                            {{--                                                   href="#">--}}
+                                            {{--                                                    <span class="fab fa-twitter mr-2"></span>--}}
+                                            {{--                                                    Twitter--}}
+                                            {{--                                                </a>--}}
+                                            {{--                                            </div>--}}
+                                            {{--                                        </div>--}}
+
+                                            <div class="card-footer__bottom p-4 text-center font-size-14">
+                                                <span class="text-gray-1">Do not have an account?</span>
+                                                <a class="js-animation-link font-weight-bold" href="javascript:;"
+                                                   data-target="#signup" data-link-group="idForm"
+                                                   data-animation-in="fadeIn">Sign Up</a>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
-                                {{--                                    <div class="card-footer p-0">--}}
-                                {{--                                        <div class="card-footer__top border-bottom border-color-8 py-3">--}}
-                                {{--                                            <div class="text-center mt-2 mb-4 pb-1">--}}
-                                {{--                                                <span class="d-block text-gray-1 fontsize-14">or continue with</span>--}}
-                                {{--                                            </div>--}}
-                                {{--                                            <div class="d-flex mb-3">--}}
-                                {{--                                                <a class="btn btn-block btn-sm btn-facebook transition-3d-hover"--}}
-                                {{--                                                   href="#">--}}
-                                {{--                                                    <span class="fab fa-facebook-f mr-2"></span>--}}
-                                {{--                                                    Facebook--}}
-                                {{--                                                </a>--}}
-                                {{--                                                <a class="btn btn-block btn-sm btn-twitter transition-3d-hover ml-5 mt-0"--}}
-                                {{--                                                   href="#">--}}
-                                {{--                                                    <span class="fab fa-twitter mr-2"></span>--}}
-                                {{--                                                    Twitter--}}
-                                {{--                                                </a>--}}
-                                {{--                                            </div>--}}
-                                {{--                                        </div>--}}
+                                <!-- End Login -->
 
-                                {{--                                        <div class="card-footer__bottom p-4 text-center font-size-14">--}}
-                                {{--                                            <span class="text-gray-1">Already have an account?</span>--}}
-                                {{--                                            <a class="js-animation-link font-weight-bold" href="javascript:;"--}}
-                                {{--                                               data-target="#login" data-link-group="idForm" data-animation-in="fadeIn">Log--}}
-                                {{--                                                In</a>--}}
-                                {{--                                        </div>--}}
-                                {{--                                    </div>--}}
+                                <!-- Signup -->
+                                <div id="signup" style="opacity: 0; display: none;" data-target-group="idForm">
+                                    <!-- Header -->
+                                    <div class="card-header text-center">
+                                        <h3 class="h5 mb-0 font-weight-semi-bold">Register</h3>
+                                    </div>
+                                    <!-- End Header -->
+                                    <div class="card-body pt-5 pb-4">
+                                        <form class="tab-content"
+                                              method="POST"
+                                              enctype="multipart/form-data"
+                                              action="{{ route('registration') }}">
+                                            @csrf
+                                            <div class="tab-pane fade active show" id="pills-one-code-sample"
+                                                 role="tabpanel" aria-labelledby="pills-one-code-sample-tab">
+                                                <!-- Form Group -->
+                                            {{--                                                <div class="form-group pb-1">--}}
+                                            {{--                                                    <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">--}}
+                                            {{--                                                        <label class="sr-only" for="uname">User Name</label>--}}
+                                            {{--                                                        <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">--}}
+                                            {{--                                                            <input type="text" class="form-control" name="uname"--}}
+                                            {{--                                                                   id="uname" placeholder="User Name"--}}
+                                            {{--                                                                   aria-label="User Name" aria-describedby="username"--}}
+                                            {{--                                                                   required=""--}}
+                                            {{--                                                                   data-msg="Please enter a valid user name."--}}
+                                            {{--                                                                   data-error-class="u-has-error"--}}
+                                            {{--                                                                   data-success-class="u-has-success">--}}
+                                            {{--                                                            <div class="input-group-append">--}}
+                                            {{--                                                                            <span class="input-group-text"--}}
+                                            {{--                                                                                  id="username">--}}
+                                            {{--                                                                                <span class="flaticon-user font-size-20"></span>--}}
+                                            {{--                                                                            </span>--}}
+                                            {{--                                                            </div>--}}
+                                            {{--                                                        </div>--}}
+                                            {{--                                                    </div>--}}
+                                            {{--                                                </div>--}}
+                                            <!-- End Form Group -->
+                                                <!-- Form Group -->
+                                                <div class="form-group pb-1">
+                                                    <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
+                                                        <label class="sr-only" for="name">Full Name</label>
+                                                        <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
+                                                            <input type="text" class="form-control" name="name"
+                                                                   id="name" placeholder="Full Name"
+                                                                   aria-label="Full Name" aria-describedby="normalname"
+                                                                   required="" data-msg="Please enter a valid name."
+                                                                   data-error-class="u-has-error"
+                                                                   data-success-class="u-has-success">
+                                                            <div class="input-group-append">
+                                                                            <span class="input-group-text"
+                                                                                  id="normalname">
+                                                                                <span class="flaticon-browser-1 font-size-20"></span>
+                                                                            </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Form Group -->
+
+                                                <!-- Form Group -->
+                                                <div class="form-group pb-1">
+                                                    <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
+                                                        <label class="sr-only" for="signupSrEmail">Email</label>
+                                                        <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
+                                                            <input type="email" class="form-control" name="email"
+                                                                   id="signupSrEmail" placeholder="Email"
+                                                                   aria-label="Email" aria-describedby="signupEmail"
+                                                                   required=""
+                                                                   data-msg="Please enter a valid email address."
+                                                                   data-error-class="u-has-error"
+                                                                   data-success-class="u-has-success">
+                                                            <div class="input-group-append">
+                                                                            <span class="input-group-text"
+                                                                                  id="signupEmail">
+                                                                                <span class="far fa-envelope font-size-20"></span>
+                                                                            </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Form Group -->
+
+                                                <!-- Form Group -->
+                                                <div class="form-group pb-1">
+                                                    <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
+                                                        <label class="sr-only" for="signupSrPassword">Password</label>
+                                                        <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
+                                                            <input type="password" class="form-control" name="password"
+                                                                   id="signupSrPassword" placeholder="Password"
+                                                                   aria-label="Password"
+                                                                   aria-describedby="signupPassword" required=""
+                                                                   data-msg="Your password is invalid. Please try again."
+                                                                   data-error-class="u-has-error"
+                                                                   data-success-class="u-has-success">
+                                                            <div class="input-group-prepend">
+                                                                            <span class="input-group-text"
+                                                                                  id="signupPassword">
+                                                                                <span class="flaticon-password font-size-20"></span>
+                                                                            </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Form Group -->
+                                                <div class="mb-3 pb-1">
+                                                    <button type="submit"
+                                                            class="btn btn-md btn-block btn-blue-1 rounded-xs font-weight-bold transition-3d-hover">
+                                                        Register
+                                                    </button>
+                                                </div>
+                                                <div class="d-flex justify-content-between mb-1">
+                                                    <div class="custom-control custom-checkbox custom-control-inline">
+                                                        <input type="checkbox" id="customCheckboxInline2"
+                                                               name="customCheckboxInline2"
+                                                               class="custom-control-input">
+                                                        <label class="custom-control-label" for="customCheckboxInline2">I
+                                                            have read and accept the <a href="#">Terms and Privacy
+                                                                Policy</a></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    {{--                                    <div class="card-footer p-0">--}}
+                                    {{--                                        <div class="card-footer__top border-bottom border-color-8 py-3">--}}
+                                    {{--                                            <div class="text-center mt-2 mb-4 pb-1">--}}
+                                    {{--                                                <span class="d-block text-gray-1 fontsize-14">or continue with</span>--}}
+                                    {{--                                            </div>--}}
+                                    {{--                                            <div class="d-flex mb-3">--}}
+                                    {{--                                                <a class="btn btn-block btn-sm btn-facebook transition-3d-hover"--}}
+                                    {{--                                                   href="#">--}}
+                                    {{--                                                    <span class="fab fa-facebook-f mr-2"></span>--}}
+                                    {{--                                                    Facebook--}}
+                                    {{--                                                </a>--}}
+                                    {{--                                                <a class="btn btn-block btn-sm btn-twitter transition-3d-hover ml-5 mt-0"--}}
+                                    {{--                                                   href="#">--}}
+                                    {{--                                                    <span class="fab fa-twitter mr-2"></span>--}}
+                                    {{--                                                    Twitter--}}
+                                    {{--                                                </a>--}}
+                                    {{--                                            </div>--}}
+                                    {{--                                        </div>--}}
+
+                                    {{--                                        <div class="card-footer__bottom p-4 text-center font-size-14">--}}
+                                    {{--                                            <span class="text-gray-1">Already have an account?</span>--}}
+                                    {{--                                            <a class="js-animation-link font-weight-bold" href="javascript:;"--}}
+                                    {{--                                               data-target="#login" data-link-group="idForm" data-animation-in="fadeIn">Log--}}
+                                    {{--                                                In</a>--}}
+                                    {{--                                        </div>--}}
+                                    {{--                                    </div>--}}
+                                </div>
+                                <!-- End Signup -->
+
+                                <!-- Forgot Passwrd -->
+                            {{--                                <div id="forgotPassword" style="opacity: 0; display: none;" data-target-group="idForm">--}}
+                            {{--                                    <!-- Header -->--}}
+                            {{--                                    <div class="card-header bg-light text-center py-3 px-5">--}}
+                            {{--                                        <h3 class="h6 mb-0 font-weight-semi-bold">Recover password</h3>--}}
+                            {{--                                    </div>--}}
+                            {{--                                    <!-- End Header -->--}}
+                            {{--                                    <div class="card-body px-10 py-5">--}}
+                            {{--                                        <!-- Form Group -->--}}
+                            {{--                                        <div class="form-group">--}}
+                            {{--                                            <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">--}}
+                            {{--                                                <label class="sr-only" for="recoverSrEmail">Your email</label>--}}
+                            {{--                                                <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">--}}
+                            {{--                                                    <input type="email" class="form-control" name="email"--}}
+                            {{--                                                           id="recoverSrEmail" placeholder="Your email"--}}
+                            {{--                                                           aria-label="Your email" aria-describedby="recoverEmail"--}}
+                            {{--                                                           required="" data-msg="Please enter a valid email address."--}}
+                            {{--                                                           data-error-class="u-has-error"--}}
+                            {{--                                                           data-success-class="u-has-success">--}}
+                            {{--                                                    <div class="input-group-append">--}}
+                            {{--                                                                    <span class="input-group-text" id="recoverEmail">--}}
+                            {{--                                                                        <span class="far fa-envelope font-size-20"></span>--}}
+                            {{--                                                                    </span>--}}
+                            {{--                                                    </div>--}}
+                            {{--                                                </div>--}}
+                            {{--                                            </div>--}}
+                            {{--                                        </div>--}}
+                            {{--                                        <!-- End Form Group -->--}}
+                            {{--                                        <div class="mb-2">--}}
+                            {{--                                            <button type="submit"--}}
+                            {{--                                                    class="btn btn-sm btn-block btn-blue-1 rounded-xs font-weight-bold transition-3d-hover">--}}
+                            {{--                                                Recover Password--}}
+                            {{--                                            </button>--}}
+                            {{--                                        </div>--}}
+                            {{--                                        <div class="text-center font-size-14">--}}
+                            {{--                                            <span class="text-gray-1">Remember your password?</span>--}}
+                            {{--                                            <a class="js-animation-link font-weight-bold" href="javascript:;"--}}
+                            {{--                                               data-target="#login" data-link-group="idForm" data-animation-in="fadeIn">Log--}}
+                            {{--                                                In</a>--}}
+                            {{--                                        </div>--}}
+                            {{--                                    </div>--}}
+                            {{--                                </div>--}}
+                            <!-- End Forgot Passwrd -->
+                                </form>
                             </div>
-                            <!-- End Signup -->
-
-                            <!-- Forgot Passwrd -->
-                        {{--                                <div id="forgotPassword" style="opacity: 0; display: none;" data-target-group="idForm">--}}
-                        {{--                                    <!-- Header -->--}}
-                        {{--                                    <div class="card-header bg-light text-center py-3 px-5">--}}
-                        {{--                                        <h3 class="h6 mb-0 font-weight-semi-bold">Recover password</h3>--}}
-                        {{--                                    </div>--}}
-                        {{--                                    <!-- End Header -->--}}
-                        {{--                                    <div class="card-body px-10 py-5">--}}
-                        {{--                                        <!-- Form Group -->--}}
-                        {{--                                        <div class="form-group">--}}
-                        {{--                                            <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">--}}
-                        {{--                                                <label class="sr-only" for="recoverSrEmail">Your email</label>--}}
-                        {{--                                                <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">--}}
-                        {{--                                                    <input type="email" class="form-control" name="email"--}}
-                        {{--                                                           id="recoverSrEmail" placeholder="Your email"--}}
-                        {{--                                                           aria-label="Your email" aria-describedby="recoverEmail"--}}
-                        {{--                                                           required="" data-msg="Please enter a valid email address."--}}
-                        {{--                                                           data-error-class="u-has-error"--}}
-                        {{--                                                           data-success-class="u-has-success">--}}
-                        {{--                                                    <div class="input-group-append">--}}
-                        {{--                                                                    <span class="input-group-text" id="recoverEmail">--}}
-                        {{--                                                                        <span class="far fa-envelope font-size-20"></span>--}}
-                        {{--                                                                    </span>--}}
-                        {{--                                                    </div>--}}
-                        {{--                                                </div>--}}
-                        {{--                                            </div>--}}
-                        {{--                                        </div>--}}
-                        {{--                                        <!-- End Form Group -->--}}
-                        {{--                                        <div class="mb-2">--}}
-                        {{--                                            <button type="submit"--}}
-                        {{--                                                    class="btn btn-sm btn-block btn-blue-1 rounded-xs font-weight-bold transition-3d-hover">--}}
-                        {{--                                                Recover Password--}}
-                        {{--                                            </button>--}}
-                        {{--                                        </div>--}}
-                        {{--                                        <div class="text-center font-size-14">--}}
-                        {{--                                            <span class="text-gray-1">Remember your password?</span>--}}
-                        {{--                                            <a class="js-animation-link font-weight-bold" href="javascript:;"--}}
-                        {{--                                               data-target="#login" data-link-group="idForm" data-animation-in="fadeIn">Log--}}
-                        {{--                                                In</a>--}}
-                        {{--                                        </div>--}}
-                        {{--                                    </div>--}}
-                        {{--                                </div>--}}
-                        <!-- End Forgot Passwrd -->
-                            </form>
                         </div>
-                    </div>
+                    @else
+                        <span class="text-white">
+                            Hello, {{ \Illuminate\Support\Facades\Auth::user()->name }}
+                        </span>
+                    |
+                        <a href="{{ route('logout') }}"
+                           class="text-white">
+                            Logout
+                        </a>
+                    @endguest
                 </div>
 
                 <!-- End Button -->

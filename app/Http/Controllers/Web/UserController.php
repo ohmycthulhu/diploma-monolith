@@ -60,7 +60,7 @@ class UserController extends Controller
   {
     $user = Auth::attempt($request->validated());
 
-    return redirect()->back();
+    return redirect()->back()->withErrors(['login' => $user ? null : 'Invalid credentials']);
   }
 
   /**
