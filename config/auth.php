@@ -82,7 +82,12 @@ return [
     'employees' => [
       'driver' => 'eloquent',
       'model' => \App\Models\Airport\Employee::class,
-    ]
+    ],
+
+    'users' => [
+      'driver' => 'eloquent',
+      'model' => \App\Models\Web\User::class,
+    ],
 
     // 'users' => [
     //     'driver' => 'database',
