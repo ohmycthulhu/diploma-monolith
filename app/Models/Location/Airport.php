@@ -7,6 +7,7 @@ use App\Models\Flights\Flight;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Airport extends Model
@@ -49,5 +50,21 @@ class Airport extends Model
     */
     public function employees(): HasMany {
       return $this->hasMany(Employee::class, 'airport_id');
+    }
+
+    /**
+     * Relation to airport
+     *
+     * @return HasOneThrough
+    */
+    public function country(): HasOneThrough {
+      return $this->hasOneThrough(
+        Country::class,
+        City::class,
+        'id',
+        'id',
+        'city_id',
+        'country_id'
+      );
     }
 }

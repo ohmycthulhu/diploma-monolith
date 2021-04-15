@@ -137,4 +137,27 @@ class Flight extends Model
     public function scopeApproveStatus(Builder $query, int $status): Builder {
       return $query->where('approve_status', $status);
     }
+
+    /**
+     * Scope by availability
+     *
+     * @param Builder $query
+     *
+     * @return Builder
+    */
+    public function scopePubliclyAvailable(Builder $query): Builder {
+      return $query->where('approve_status', 1)
+        ->where('flight_status', 0);
+    }
+
+    /**
+     * Group by destination
+     *
+     * @param Builder $query
+     *
+     * @return Builder
+    */
+    public function scopeGroupByDestination(Builder $query): Builder {
+      return $query->groupBy('arriv_id');
+    }
 }

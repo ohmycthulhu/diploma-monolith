@@ -10,7 +10,7 @@ class Country extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'code'];
+    protected $fillable = ['name', 'code', 'image', 'slug'];
 
     /**
      * Relation to cities

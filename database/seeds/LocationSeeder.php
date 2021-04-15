@@ -21,18 +21,21 @@ class LocationSeeder extends Seeder
     $countries = json_decode(\Illuminate\Support\Facades\File::get($this->path), true);
 
     foreach ($countries as $countryData) {
-      $citiesData = $countryData['cities'];
-      unset($countryData['cities']);
       $country = \App\Models\Location\Country::create($countryData);
-      foreach ($citiesData as $cityInfo) {
-        $airportsInfo = $cityInfo['airports'];
-        unset($cityInfo['airports']);
-        $city = $country->cities()->create($cityInfo);
-
-        foreach ($airportsInfo as $airportInfo) {
-          $city->airports()->create($airportInfo);
-        }
-      }
+      $country->cities()
+        ->createMany(
+          factory(\App\Models\Location\City::class, 5)
+            ->make()
+            ->toArray()
+        )
+        ->each(function ($city) {
+          $city->airports()
+            ->createMany(
+              factory(\App\Models\Location\Airport::class, rand(3, 5))
+                ->make()
+                ->toArray()
+            );
+        });
     }
   }
 }

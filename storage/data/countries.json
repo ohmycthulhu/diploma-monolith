@@ -1,66 +1,62 @@
 [
   {
-    "name": "Country #1",
-    "code": "caf",
-    "cities": [
-      {
-        "name": "City #1",
-        "airports": [
-          {
-            "name": "Airport #1",
-            "code": "arf"
-          },
-          {
-            "name": "Airport #2",
-            "code": "ars"
-          }
-        ]
-      },
-      {
-        "name": "City #2",
-        "airports": [
-          {
-            "name": "Airport #3",
-            "code": "azc"
-          },
-          {
-            "name": "Airport #4",
-            "code": "arh"
-          }
-        ]
-      }
-    ]
+    "name": "Turkey",
+    "code": "tur",
+    "slug": "turkey",
+    "image": "countries/turkey.jpg"
   },
   {
-    "name": "Country #2",
-    "code": "cas",
-    "cities": [
-      {
-        "name": "City #3",
-        "airports": [
-          {
-            "name": "Airport #5",
-            "code": "brf"
-          },
-          {
-            "name": "Airport #6",
-            "code": "brs"
-          }
-        ]
-      },
-      {
-        "name": "City #4",
-        "airports": [
-          {
-            "name": "Airport #7",
-            "code": "czc"
-          },
-          {
-            "name": "Airport #8",
-            "code": "crh"
-          }
-        ]
-      }
-    ]
+    "name": "United States",
+    "code": "usa",
+    "slug": "united-states",
+    "image": "countries/usa.jpg"
+  },
+  {
+    "name": "Ukraine",
+    "code": "ukr",
+    "slug": "ukraine",
+    "image": "countries/ukraine.jpg"
+  },
+  {
+    "name": "France",
+    "code": "fre",
+    "slug": "france",
+    "image": "countries/france.jpg"
+  },
+  {
+    "name": "India",
+    "code": "ind",
+    "slug": "india",
+    "image": "countries/india.jpg"
+  },
+  {
+    "name": "United Kingdom",
+    "code": "uk",
+    "slug": "united-kingdom",
+    "image": "countries/uk.jpg"
+  },
+  {
+    "name": "Germany",
+    "code": "ger",
+    "slug": "germany",
+    "image": "countries/germany.jpg"
+  },
+  {
+    "name": "Greece",
+    "code": "gre",
+    "slug": "greece",
+    "image": "countries/greece.jpg"
+  },
+  {
+    "name": "Canada",
+    "code": "can",
+    "slug": "canada",
+    "image": "countries/canada.jpg"
+  },
+  {
+    "name": "Italy",
+    "code": "ita",
+    "slug": "italy",
+    "image": "countries/italy.jpg"
   }
 ]
