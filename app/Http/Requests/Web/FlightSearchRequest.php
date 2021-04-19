@@ -24,7 +24,17 @@ class FlightSearchRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+          'country' => 'nullable|string',
+          'city_to' => 'nullable|numeric',
+          'airport_to' => 'nullable|numeric',
+
+          'city_from' => 'nullable|numeric',
+          'airport_from' => 'nullable|numeric',
+
+          'price_from' => 'nullable|numeric',
+          'price_to' => 'nullable|numeric',
+
+          'depart_date' => 'nullable|date',
         ];
     }
 }

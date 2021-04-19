@@ -160,4 +160,39 @@ class Flight extends Model
     public function scopeGroupByDestination(Builder $query): Builder {
       return $query->groupBy('arriv_id');
     }
+
+    /**
+     * Scope arrival airport
+     *
+     * @param Builder $query
+     * @param array|int $airportId
+     *
+     * @return Builder
+    */
+    public function scopeArrival(Builder $query, $airportId): Builder {
+      return $this->scopeDestination($query, 'arriv_id', $airportId);
+    }
+
+    /**
+     * Scope departure airport
+     *
+     * @param Builder $query
+     * @param array|int $airportId
+     *
+     * @return Builder
+    */
+    public function scopeDeparture(Builder $query, $airportId): Builder {
+      return $this->scopeDestination($query, 'depart_id', $airportId);
+    }
+
+    protected function scopeDestination(Builder $query, string $column, $location): Builder {
+      if ($query) {
+        if (is_array($location)) {
+          $query->whereIn($column, $location);
+        } else {
+          $query->where($column, $location);
+        }
+      }
+      return $query;
+    }
 }
