@@ -15,14 +15,8 @@ class CreateTicketTypesTable extends Migration
     {
         Schema::create('ticket_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('flight_id')
-              ->references('id')
-              ->on('flights')
-              ->cascadeOnDelete();
 
             $table->string('name');
-            $table->unsignedFloat('price');
-            $table->unsignedInteger('seats');
 
             $table->softDeletes();
             $table->timestamps();

@@ -28,10 +28,11 @@ class CreateBookingSeatsTable extends Migration
 
       $table->unsignedInteger('seat');
 
-      $table->foreignId('ticket_type_id')
-        ->references('id')
-        ->on('ticket_types');
-
+      $table->foreignId('flight_ticket_type_id')
+//        ->references('id')
+//        ->on('flight_ticket_types')
+//        ->nullOnDelete();
+;
 
       $table->string('name');
       $table->boolean('is_male');

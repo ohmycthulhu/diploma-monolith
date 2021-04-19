@@ -2,27 +2,21 @@
 
 namespace App\Nova\Resources\Flights;
 
-use App\Nova\Actions\ChangeFlightApprovalAction;
-use App\Nova\Filters\ApproveStatusFilter;
-use App\Nova\Resources\Airport;
-use App\Nova\Resources\FM\Administrator;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
-use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Flight extends FlightBaseResource
+class FlightTicketType extends FlightBaseResource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\Flights\Flight::class;
+    public static $model = \App\Models\Flights\FlightTicketType::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -37,7 +31,7 @@ class Flight extends FlightBaseResource
      * @var array
      */
     public static $search = [
-        'id', 'description'
+        'id',
     ];
 
     /**
@@ -49,31 +43,17 @@ class Flight extends FlightBaseResource
     public function fields(Request $request)
     {
         return [
-            ID::make(__('ID'), 'id')->sortable(),
-
-          DateTime::make(__('Departure time'), 'flight_datetime')
-            ->sortable(),
-
-          Number::make(__('Duration in minutes'), 'duration')
+          ID::make(__('ID'), 'id')->sortable(),
+          BelongsTo::make(__('Flight'), 'flight', Flight::class)->sortable(),
+          BelongsTo::make(__('Ticket Type'), 'ticketType', TicketType::class)->sortable(),
+          Number::make(__('Price'), 'price')
             ->sortable()
-            ->rules('required|numeric|min:1'),
-
-          Textarea::make(__('Description'), 'description'),
-
-          $this->getApproveStatusField(__('Approval status'), 'approve_status'),
-          $this->getFlightStatusField(__('Flight status'), 'flight_status'),
-
-          BelongsTo::make(__('Administrator'), 'administrator', Administrator::class)
-            ->readonly(),
-          BelongsTo::make(__('Departure from'), 'airportDepart', Airport::class),
-          BelongsTo::make(__('Arrives to'), 'airportArrival', Airport::class),
-
-          HasMany::make(__('Status history'), 'approveStatusChanges', FlightApproveStatusChange::class)
-            ->readonly(),
-
-          HasMany::make(__('Events'), 'events', FlightApproveStatusChange::class)
-            ->readonly(),
-          HasMany::make(__('Ticket Types'), 'ticketTypes', FlightTicketType::class),
+            ->step(0.01)
+            ->rules('required|numeric|min:0'),
+          Number::make(__('Seats'), 'seats')
+            ->sortable()
+            ->step(1)
+            ->rules('required|numeric|min:0'),
         ];
     }
 
@@ -96,9 +76,7 @@ class Flight extends FlightBaseResource
      */
     public function filters(Request $request)
     {
-        return [
-          ApproveStatusFilter::make(),
-        ];
+        return [];
     }
 
     /**
@@ -120,9 +98,6 @@ class Flight extends FlightBaseResource
      */
     public function actions(Request $request)
     {
-        return [
-          ChangeFlightApprovalAction::make()
-            ->canSeeWhen('approveFlights')
-        ];
+        return [];
     }
 }

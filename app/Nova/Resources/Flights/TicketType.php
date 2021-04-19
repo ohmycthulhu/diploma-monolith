@@ -48,16 +48,7 @@ class TicketType extends Resource
   {
     return [
       ID::make(__('ID'), 'id')->sortable(),
-      BelongsTo::make(__('Flight'), 'flight', Flight::class)->sortable(),
       Text::make(__('Name'), 'name')->sortable(),
-      Number::make(__('Price'), 'price')
-        ->sortable()
-        ->step(0.01)
-        ->rules('required|numeric|min:0'),
-      Number::make(__('Seats'), 'seats')
-        ->sortable()
-        ->step(1)
-        ->rules('required|numeric|min:0'),
     ];
   }
 

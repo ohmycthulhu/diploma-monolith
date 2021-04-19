@@ -29,6 +29,4 @@ Route::get('/user', function () {
   return response()->json(['user' => \Illuminate\Support\Facades\Auth::user()]);
 });
 
-Route::get('/search', function () {
-  return response()->json(['error' => 'Not implemented yet'], 504);
-})->name('search');
+Route::get('/search', 'Web\\FlightsController@search')->name('search');

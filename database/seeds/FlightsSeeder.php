@@ -7,11 +7,13 @@ class FlightsSeeder extends Seeder
   protected $amount = 100;
   protected $administrator;
   protected $airport;
+  protected $ticketType;
 
   public function __construct()
   {
     $this->administrator = new \App\Models\FM\Administrator;
     $this->airport = new \App\Models\Location\Airport;
+    $this->ticketType = new \App\Models\Flights\TicketType;
   }
 
   /**
@@ -25,6 +27,7 @@ class FlightsSeeder extends Seeder
     $adminCreators = $this->administrator::query()->canCreateFlights()->get();
     // Get list of administrators who can approve flights
     $adminApprov = $this->administrator::query()->canApproveFlights()->get();
+    $ticketTypes = $this->ticketType::all();
 
     // Get list of locations
     $airports = $this->airport::all();
@@ -60,12 +63,16 @@ class FlightsSeeder extends Seeder
       $flight->setApproveStatus($adminApp, $status);
 
       // Add ticket types
-      $flight->ticketTypes()
-        ->createMany(
-          factory(\App\Models\Flights\TicketType::class, 3)
-            ->make()
-            ->toArray()
-        );
+      for ($ftti = 0; $ftti < 3; $ftti++) {
+        $flight->ticketTypes()
+          ->create(
+            factory(\App\Models\Flights\FlightTicketType::class)
+              ->make([
+                'ticket_type_id' => $ticketTypes->random()->id
+              ])
+              ->toArray()
+          );
+      }
     }
   }
 }

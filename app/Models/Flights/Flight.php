@@ -104,7 +104,7 @@ class Flight extends Model
      * @return HasMany
     */
     public function ticketTypes(): HasMany {
-      return $this->hasMany(TicketType::class, 'flight_id');
+      return $this->hasMany(FlightTicketType::class, 'flight_id');
     }
 
     /**

@@ -16,39 +16,12 @@
             <div class="pt-xl-11 mb-lg-n17">
                 <div class="card border-0 tab-shadow">
                     <div class="card-body">
-                        <ul class="nav tab-nav tab-nav-inner flex-nowrap pb-4 px-lg-3 px-2 pb-xl-0" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link font-weight-medium active" id="pills-one-example2-tab"
-                                   data-toggle="pill" href="#pills-one-example2" role="tab"
-                                   aria-controls="pills-one-example2" aria-selected="true">
-                                    <div class="d-flex flex-column flex-md-row  position-relative text-black align-items-center">
-                                        <span class="tabtext mt-2 mt-md-0 font-size-12 font-weight-semi-bold">ROUND-TRIP</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link font-weight-medium" id="pills-two-example2-tab" data-toggle="pill"
-                                   href="#pills-two-example2" role="tab" aria-controls="pills-two-example2"
-                                   aria-selected="true">
-                                    <div class="d-flex flex-column flex-md-row  position-relative text-black align-items-center">
-                                        <span class="tabtext mt-2 mt-md-0 font-size-12 font-weight-semi-bold">ONE-WAY</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link font-weight-medium" id="pills-three-example2-tab" data-toggle="pill"
-                                   href="#pills-three-example2" role="tab" aria-controls="pills-three-example2"
-                                   aria-selected="true">
-                                    <div class="d-flex flex-column flex-md-row  position-relative text-black align-items-center">
-                                        <span class="tabtext mt-2 mt-md-0 font-size-12 font-weight-semi-bold">MULTI-CITY</span>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
                         <div class="tab-content hero-tab-pane">
                             <div class="tab-pane fade pt-xl-4 active show" id="pills-one-example2" role="tabpanel"
                                  aria-labelledby="pills-one-example2-tab">
-                                <form class="js-validate">
+                                <form class="js-validate"
+                                      action="{{ route('search') }}"
+                                >
                                     <div class="row nav-select d-block d-lg-flex mb-lg-2 px-lg-3 px-2">
                                         <div class="col-sm-12 col-lg-2dot3 mb-4 mb-lg-0 ">
                                             <!-- Input -->
