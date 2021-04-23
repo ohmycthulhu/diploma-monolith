@@ -195,4 +195,25 @@ class Flight extends Model
       }
       return $query;
     }
+
+    /**
+     * Method to format duration
+     *
+     * @return string
+    */
+    public function getFormattedDurationAttribute(): string {
+      $hours = floor($this->duration / 60);
+      $minutes = $this->duration % 60;
+
+      return ($hours >= 10 ? $hours : "0$hours") . " hrs ".($minutes >= 10 ? $minutes : "0$minutes")." mins";
+    }
+
+    /**
+     * Attribute for the price
+     *
+     * @return ?string
+    */
+    public function getRandomPriceAttribute(): ?float {
+      return !empty($this->ticketTypes) ? number_format($this->ticketTypes[0]->price, 2) : null;
+    }
 }

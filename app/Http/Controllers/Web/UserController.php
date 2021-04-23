@@ -56,7 +56,7 @@ class UserController extends Controller
    *
    * @return RedirectResponse
    */
-  public function login(UserLoginFormRequest $request): RedirectResponse
+  public function login(UserLoginFormRequest $request)
   {
     $user = Auth::attempt($request->validated());
 

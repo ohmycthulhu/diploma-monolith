@@ -4,6 +4,7 @@ namespace App\Models\Location;
 
 use App\Models\Airport\Employee;
 use App\Models\Flights\Flight;
+use App\Models\Traits\AutocompleteTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Airport extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, AutocompleteTrait;
 
     protected $fillable = ['name', 'code'];
 

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Flights\Flight;
 use App\Http\Requests\Web\FlightSearchRequest;
+use App\Models\Flights\FlightTicketType;
+use App\Models\Flights\TicketType;
+use App\Models\Location\Airport;
 use App\Models\Location\City;
 use App\Models\Location\Country;
 use Illuminate\Database\Eloquent\Builder;
@@ -38,13 +41,23 @@ class FlightsController extends Controller
 
       $params = $request->validated();
 
+      $cityFrom = $params['city_from'] ?? null;
+      $cityTo = $params['city_to'] ?? null;
+      $airportFrom = $params['airport_from'] ?? null;
+      $airportTo = $params['airport_to'] ?? null;
+
+      $cityFromName = $cityFrom ? City::find($cityFrom)->name : null;
+      $cityToName = $cityTo ? City::find($cityTo)->name : null;
+      $airportFromName = $airportFrom ? Airport::find($airportFrom)->name : null;
+      $airportToName = $airportTo ? Airport::find($airportTo)->name : null;
+
       // Set departure information
       $this->scopeLocation(
         $query,
         'departure',
         null,
-        $params['city_from'] ?? null,
-        $params['airport_from'] ?? null
+        $cityFrom,
+        $airportFrom
       );
 
       // Set arrival information
@@ -52,8 +65,8 @@ class FlightsController extends Controller
         $query,
         'arrival',
         $params['country'] ?? null,
-        $params['city_to'] ?? null,
-        $params['airport_tp'] ?? null
+        $cityTo,
+        $airportTo
       );
       $priceFrom = $params['price_from'] ?? null;
       $priceTo = $params['price_to'] ?? null;
@@ -73,10 +86,20 @@ class FlightsController extends Controller
         $query->whereRaw("DATE(flight_datetime) = '$date'");
       }
 
+      $allTicketTypes = FlightTicketType::query()
+        ->whereIn('flight_id', $query->pluck('id'))->pluck('price');
+      $prices = [
+        'min' => $allTicketTypes->min(),
+        'max' => $allTicketTypes->max(),
+      ];
+
+      $ticketTypes = TicketType::all();
+
       $flights = $query->paginate($pageSize);
-      return response()->json([
-        'flights' => $flights
-      ]);
+      return view('flights.search', compact('flights',
+        'cityFrom', 'cityFromName', 'cityTo', 'cityToName',
+        'airportFrom', 'airportFromName', 'airportTo', 'airportToName',
+        'date', 'priceFrom', 'priceTo', 'ticketTypes', 'prices'));
     }
 
     /**
