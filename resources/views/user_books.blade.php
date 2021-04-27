@@ -1,13 +1,13 @@
 @extends('layout.layout')
 
 @section('content')
-    <h5 class="container my-4">
+    <div class="container my-4">
         <div>
             <h3>
                 Welcome, {{ $user->name }}
             </h3>
         </div>
-        @if(sizeof($bookings) && false)
+        @if(sizeof($bookings))
         <div class="my-4">
             <div class="row">
                 @foreach($bookings as $booking)
