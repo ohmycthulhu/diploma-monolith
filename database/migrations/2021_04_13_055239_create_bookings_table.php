@@ -20,12 +20,14 @@ class CreateBookingsTable extends Migration
               ->references('id')
               ->on('users')
               ->nullOnDelete();
+            $table->string('uuid');
             $table->string('name');
-            $table->string('passport_uuid');
+            $table->string('passport_uuid')
+              ->nullable();
             $table->string('phone');
             $table->string('email');
-            $table->date('birthdate');
-            $table->boolean('is_male');
+//            $table->date('birthdate');
+//            $table->boolean('is_male');
             $table->foreignId('employee_id')
               ->nullable()
               ->references('id')
@@ -36,6 +38,15 @@ class CreateBookingsTable extends Migration
             $table->foreignId('flight_id')
               ->references('id')
               ->on('flights')
+              ->cascadeOnDelete();
+
+            $table->foreignId('city_id')
+              ->references('id')
+              ->on('cities')
+              ->cascadeOnDelete();
+            $table->foreignId('country_id')
+              ->references('id')
+              ->on('countries')
               ->cascadeOnDelete();
 
             $table->float('price');

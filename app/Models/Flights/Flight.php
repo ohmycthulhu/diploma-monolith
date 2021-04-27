@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 class Flight extends Model
 {
@@ -206,6 +207,36 @@ class Flight extends Model
       $minutes = $this->duration % 60;
 
       return ($hours >= 10 ? $hours : "0$hours") . " hrs ".($minutes >= 10 ? $minutes : "0$minutes")." mins";
+    }
+
+    /**
+     * Method to get formatted departure time
+     *
+     * @return string
+    */
+    public function getFormattedDepartureTimeAttribute(): string {
+      return $this->formatTime($this->flight_datetime);
+    }
+
+    /**
+     * Method to get formatted departure time
+     *
+     * @return string
+    */
+    public function getFormattedArrivalTimeAttribute(): string {
+      $time = new Carbon($this->flight_datetime);
+      return $this->formatTime($time->addMinutes($this->duration));
+    }
+
+    /**
+     * Method to get formatted departure time
+     *
+     * @param Carbon $time
+     *
+     * @return string
+    */
+    protected function formatTime(Carbon $time): string {
+      return $time->format("H.i");
     }
 
     /**

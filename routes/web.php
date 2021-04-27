@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'Web\\HomeController@home');
+Route::get('/', 'Web\\HomeController@home')
+  ->name('home');
 
 Route::post('/login', 'Web\\UserController@login')
   ->name('login');
@@ -30,3 +31,27 @@ Route::get('/user', function () {
 });
 
 Route::get('/search', 'Web\\FlightsController@search')->name('search');
+Route::get('/flights/{flight}/book/personal', 'Web\\BookingController@getPage')
+  ->name('flights.book');
+Route::post('/flights/{flight}/book/personal', 'Web\\BookingController@inputPersonalData')
+  ->name('flights.book.personal');
+Route::get('/flights/{flight}/book/payment', 'Web\\BookingController@getPaymentPage')
+  ->name('flights.book.payment');
+Route::post('/flights/{flight}/book/payment', 'Web\\BookingController@inputPaymentData')
+  ->name('flights.book.payment');
+Route::get("/flights/{flight}/book/confirmation", 'Web\\BookingController@getConfirmPage')
+  ->name('flights.book.confirmation');
+Route::post('/flights/{flight}/book/confirm', 'Web\\BookingController@confirmOrder')
+  ->name('flights.book.confirm');
+Route::post('/flights/{flight}/book/reject', 'Web\\BookingController@rejectOrder')
+  ->name('flights.book.reject');
+
+Route::get('/bookings/{uuid}', 'Web\\BookingController@getBookingDetails')
+  ->name('books.details');
+
+if (config('app.debug')) {
+  Route::get('/login/{id}', function (int $id) {
+    \Illuminate\Support\Facades\Auth::loginUsingId($id);
+    return redirect()->back();
+  });
+}

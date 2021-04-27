@@ -3,6 +3,8 @@
 namespace App\Models\Flights;
 
 use App\Models\Airport\Employee;
+use App\Models\Location\City;
+use App\Models\Location\Country;
 use App\Models\Transactions\Payment;
 use App\Models\Web\User;
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +19,8 @@ class Booking extends Model
     protected $fillable = [
       'name', 'passport_uuid', 'phone', 'email',
       'birthdate', 'is_male', 'flight_id', 'price',
+      'is_approved', 'user_id', 'uuid',
+      'city_id', 'country_id',
     ];
 
     /**
@@ -62,5 +66,23 @@ class Booking extends Model
     */
     public function payments(): HasMany {
       return $this->hasMany(Payment::class, 'booking_id');
+    }
+
+    /**
+     * Relation to city
+     *
+     * @return BelongsTo
+    */
+    public function city(): BelongsTo {
+      return $this->belongsTo(City::class, 'city_id');
+    }
+
+    /**
+     * Relation to country
+     *
+     * @return BelongsTo
+    */
+    public function country(): BelongsTo {
+      return $this->belongsTo(Country::class, 'country_id');
     }
 }

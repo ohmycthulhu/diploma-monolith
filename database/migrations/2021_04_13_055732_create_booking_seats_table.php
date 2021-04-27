@@ -35,8 +35,8 @@ class CreateBookingSeatsTable extends Migration
 ;
 
       $table->string('name');
-      $table->boolean('is_male');
-      $table->date('birthdate');
+//      $table->boolean('is_male');
+//      $table->date('birthdate');
 
       $table->softDeletes();
       $table->timestamps();

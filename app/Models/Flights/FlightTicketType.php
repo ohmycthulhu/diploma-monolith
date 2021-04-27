@@ -26,7 +26,7 @@ class FlightTicketType extends Model
    * @return BelongsTo
   */
   public function ticketType(): BelongsTo {
-    return $this->belongsTo(TicketType::class, 'ticket_type');
+    return $this->belongsTo(TicketType::class, 'ticket_type_id');
   }
 
   /**

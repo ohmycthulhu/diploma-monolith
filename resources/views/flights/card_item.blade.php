@@ -150,7 +150,8 @@
 {{--            <!-- End On Target Modal -->--}}
 {{--        </div>--}}
         <div class="d-flex justify-content-center">
-            <a href="flights-booking.html" class="btn btn-blue-1 font-size-14 width-260 text-lh-lg transition-3d-hover py-1">Choose</a>
+            <a href="{{ route('flights.book', compact('flight')) }}"
+               class="btn btn-blue-1 font-size-14 width-260 text-lh-lg transition-3d-hover py-1">Choose</a>
         </div>
     </div>
 </div>
