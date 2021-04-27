@@ -373,10 +373,10 @@
               </div>
             </div>
           @else
-            <span>
+            <a href="{{ route('books.all') }}">
                 <i class="flaticon-user mr-2 ml-1 font-size-18"></i>
                 Hello, {{ \Illuminate\Support\Facades\Auth::user()->name }}
-            </span>
+            </a>
             <span class="mx-2">|</span>
             <a href="{{ route('logout') }}">
               Logout

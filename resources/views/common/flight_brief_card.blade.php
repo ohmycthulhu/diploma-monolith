@@ -1,5 +1,5 @@
 <a class="d-block mb-4 mb-xl-0"
-   href="https://transvelo.github.io/mytravel-html/html/flights/flights-booking.html">
+   href="{{ route('flights.book', ['flight' => $flight]) }}">
     <div class="text-hover bg-white p-3 rounded-xs d-flex justify-content-between transition-3d-hover">
         <h6 class="font-size-17 font-weight-normal text-gray-5 ml-1 mb-0">
             {{ $flight->airportArrival->city->name }}

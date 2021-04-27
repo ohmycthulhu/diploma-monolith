@@ -49,7 +49,7 @@
                                                name="firstName"
                                                placeholder="Ali"
                                                aria-label="Ali"
-                                               value="{{ $savedData['firstName'] ?? '' }}"
+                                               value="{{ $savedData['firstName'] ?? ($user ? $user->firstName : '') }}"
                                                required
                                                data-msg="Please enter your first name."
                                                data-error-class="u-has-error"
@@ -70,7 +70,7 @@
                                                placeholder="TUFAN"
                                                aria-label="TUFAN"
                                                required
-                                               value="{{ $savedData['lastName'] ?? '' }}"
+                                               value="{{ $savedData['lastName'] ?? ($user ? $user->lastName : '') }}"
                                                data-msg="Please enter your last name."
                                                data-error-class="u-has-error"
                                                data-success-class="u-has-success">
@@ -90,7 +90,7 @@
                                                name="email"
                                                placeholder="creativelayers088@gmail.com"
                                                aria-label="creativelayers088@gmail.com"
-                                               value="{{ $savedData['email'] ?? '' }}"
+                                               value="{{ $savedData['email'] ?? ($user ? $user->email : '') }}"
                                                required
                                                data-msg="Please enter a valid email address."
                                                data-error-class="u-has-error"
@@ -110,7 +110,7 @@
                                                name="phone"
                                                placeholder="+90 (254) 458 96 32"
                                                aria-label="+90 (254) 458 96 32"
-                                               value="{{ $savedData['phone'] ?? '' }}"
+                                               value="{{ $savedData['phone'] ?? ($user ? $user->phone : '') }}"
                                                required
                                                data-msg="Please enter a valid phone number."
                                                data-error-class="u-has-error"

@@ -55,3 +55,8 @@ if (config('app.debug')) {
     return redirect()->back();
   });
 }
+
+Route::group(['middleware' => 'auth'], function () {
+  Route::get('/books', 'Web\\BookingController@getBooks')
+    ->name('books.all');
+});

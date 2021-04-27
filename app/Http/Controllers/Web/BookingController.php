@@ -12,6 +12,7 @@ use App\Models\Location\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class BookingController extends Controller
 {
@@ -33,9 +34,10 @@ class BookingController extends Controller
       $savedData = $session->get("order.{$flight->id}", []);
       $selectedCity = $savedData['city_id'] ?? $flight->airportDepart->city->id;
       $ticketTypes = $flight->ticketTypes;
+      $user = Auth::user();
 
       return view('flights.book_personal',
-        compact('countries', 'flight', 'selectedCity', 'ticketTypes', 'savedData')
+        compact('countries', 'flight', 'selectedCity', 'ticketTypes', 'savedData', 'user')
       );
     }
 
@@ -176,5 +178,15 @@ class BookingController extends Controller
       return view('flights.book_details',
         compact('booking', 'flight', 'ticketType', 'confirmable')
       );
+    }
+
+    public function getBooks(): View {
+      $user = Auth::user();
+      $bookings = $user->bookings()
+        ->with('flight')
+        ->orderByDesc('created_at')
+        ->get();
+
+      return view('user_books', compact('user', 'bookings'));
     }
 }

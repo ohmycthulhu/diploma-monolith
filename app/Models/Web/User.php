@@ -32,4 +32,12 @@ class User extends \Illuminate\Foundation\Auth\User
     public function payments(): HasMany {
       return $this->hasMany(Payment::class, 'user_id');
     }
+
+    public function getFirstNameAttribute(): string {
+      return explode(' ', $this->name)[0] ?? '';
+    }
+
+    public function getLastNameAttribute(): string {
+      return explode(' ', $this->name)[1] ?? '';
+    }
 }
