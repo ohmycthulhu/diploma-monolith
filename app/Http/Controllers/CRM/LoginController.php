@@ -13,7 +13,8 @@ class LoginController extends Controller
 
   public function __construct()
   {
-    $this->middleware('guest:airport,crm.home');
+    $this->middleware('guest:airport,crm.home')
+      ->except('logout');
   }
 
   /**
@@ -33,5 +34,10 @@ class LoginController extends Controller
     } else {
       return redirect()->back();
     }
+  }
+
+  public function logout() {
+    Auth::guard('airport')->logout();
+    return redirect(route('crm.login'));
   }
 }

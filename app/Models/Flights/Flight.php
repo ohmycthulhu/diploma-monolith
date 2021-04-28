@@ -2,6 +2,7 @@
 
 namespace App\Models\Flights;
 
+use App\Models\Airport\Employee;
 use App\Models\FM\Administrator;
 use App\Models\Location\Airport;
 use Illuminate\Database\Eloquent\Builder;
@@ -45,6 +46,29 @@ class Flight extends Model
             'administrator_id' => $admin->id,
           ]);
         $this->approve_status = $status;
+        $this->save();
+      }
+      return $this;
+    }
+
+    /**
+     * Method to set the approve status of the flight
+     *
+     * @param Employee $employee
+     * @param int $status
+     *
+     * @return $this
+    */
+    public function setFlightStatus(Employee $employee, int $status): self {
+      $prevStatus = $this->flight_status;
+      if ($prevStatus !== $status) {
+        $this->events()
+          ->create([
+            'status_prev' => $prevStatus ?? 0,
+            'status_next' => $status ?? 0,
+            'employee_id' => $employee->id,
+          ]);
+        $this->flight_status = $status;
         $this->save();
       }
       return $this;
@@ -244,7 +268,37 @@ class Flight extends Model
      *
      * @return ?string
     */
-    public function getRandomPriceAttribute(): ?float {
+    public function getRandomPriceAttribute(): ?string {
       return !empty($this->ticketTypes) ? number_format($this->ticketTypes[0]->price, 2) : null;
+    }
+
+    /**
+     * Attribute to get formatted flight status
+     *
+     * @return string
+    */
+    public function getFlightStatusNameAttribute(): string {
+      switch ($this->flight_status) {
+        case 0: return 'Awaits';
+        case 1: return 'Boarding';
+        case 2: return 'In air';
+        case 3: return 'Arrived';
+      }
+      return $this->flight_status;
+    }
+
+    /**
+     * Attribute to get flight status class
+     *
+     * @return string
+    */
+    public function getFlightStatusClassAttribute(): string {
+      switch ($this->flight_status) {
+        case 0: return 'badge-primary';
+        case 1: return 'badge-warning';
+        case 2: return 'badge-success';
+        case 3: return 'badge-info';
+      }
+      return '';
     }
 }

@@ -12,7 +12,7 @@ class FlightEvent extends Model
   use SoftDeletes;
 
   protected $fillable = [
-    'status_prev', 'status_next',
+    'status_prev', 'status_next', 'employee_id',
   ];
 
   /**

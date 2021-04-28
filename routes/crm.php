@@ -20,11 +20,18 @@ if (config('app.debug')) {
   });
 }
 
-Route::get('/home', 'CRM\\HomeController@index')
+Route::get('/', 'CRM\\HomeController@index')
   ->name('home');
 
 Route::get('/login', 'CRM\\LoginController@getPage')
   ->name('login');
 Route::post('/login', 'CRM\\LoginController@login')
   ->name('login');
+Route::get('/logout', 'CRM\\LoginController@logout')
+  ->name('logout');
 
+Route::get('/flights/{id}', 'CRM\\FlightsController@getFlightPage')
+  ->name('flights.id');
+
+Route::post('/flights/{id}/statuses', 'CRM\\FlightsController@nextStatus')
+  ->name('flights.nextStatus');
