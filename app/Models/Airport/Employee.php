@@ -15,6 +15,8 @@ class Employee extends User
 {
     use SoftDeletes;
 
+    protected $guard = 'airport';
+
     /**
      * Relation to airport
      *

@@ -46,7 +46,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        //
+        $this->mapCrmRoutes();
     }
 
     /**
@@ -76,5 +76,18 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('api')
             ->namespace($this->namespace)
             ->group(base_path('routes/api.php'));
+    }
+
+    /**
+     * Define the "crm" routes for the application
+     *
+     * @return void
+    */
+    protected function mapCrmRoutes() {
+      Route::middleware('airport')
+        ->prefix('crm')
+        ->as('crm.')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/crm.php'));
     }
 }
