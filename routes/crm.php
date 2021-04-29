@@ -35,3 +35,13 @@ Route::get('/flights/{id}', 'CRM\\FlightsController@getFlightPage')
 
 Route::post('/flights/{id}/statuses', 'CRM\\FlightsController@nextStatus')
   ->name('flights.nextStatus');
+
+// Bookings control
+Route::get('/flights/{id}/bookings', 'CRM\\FlightsController@getBookingPage')
+  ->name('flights.bookings');
+Route::post('/flights/{id}/bookings', 'CRM\\FlightsController@createBooking')
+  ->name('flights.bookings.add');
+Route::get('/books/{id}/payments', 'CRM\\FlightsController@getPaymentPage')
+  ->name('books.payments');
+Route::post('/books/{id}/payments', 'CRM\\FlightsController@createPayment')
+  ->name('books.payments.create');

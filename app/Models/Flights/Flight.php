@@ -164,6 +164,18 @@ class Flight extends Model
     }
 
     /**
+     * Scope by flight status
+     *
+     * @param Builder $query
+     * @param int $status
+     *
+     * @return Builder
+    */
+    public function scopeFlightStatus(Builder $query, int $status): Builder {
+      return $query->where('flight_status', $status);
+    }
+
+    /**
      * Scope by availability
      *
      * @param Builder $query

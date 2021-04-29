@@ -57,6 +57,7 @@
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
         <form class="form-inline search-full form-inline search"
+              action="{{ route('crm.home') }}"
               role="search">
           <div class="search-bar">
             <input type="text"
@@ -210,6 +211,10 @@
   // $(document).ready(function () {
   //   App.init();
   // });
+  $('[type="submit"][data-form]')
+    .on('click', function () {
+      $(`${this.dataset.form}`).submit()
+    })
 </script>
 <script src="/assets/crm/assets/js/custom.js"></script>
 <!-- END GLOBAL MANDATORY SCRIPTS -->
