@@ -28,6 +28,7 @@
 <script src="/assets/js/components/hs.svg-injector.js"></script>
 <script src="/assets/js/components/hs.quantity-counter.js"></script>
 <script src="/assets/js/components/hs.counter.js"></script>
+<script src="/assets/js/autocomplete.js"></script>
 
 <!-- JS Plugins Init. -->
 <script>

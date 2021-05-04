@@ -106,7 +106,7 @@ class BookingController extends Controller
 
       $flight = Flight::find($flightId);
       $booking = $flight->bookings()
-        ->find($flight->id)
+        ->find($bookingId)
         ->load('city', 'country');
       $ticketType = $flight->ticketTypes()
         ->find($request->session()->get("order.{$flight->id}.ticket_type_id"))

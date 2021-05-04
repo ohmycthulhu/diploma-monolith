@@ -30,10 +30,19 @@
                                                 <div class="input-group border-bottom border-width-2 border-color-1">
                                                     <i class="flaticon-pin-1 d-flex align-items-center mr-2 text-primary font-weight-semi-bold"></i>
                                                     <input type="text"
-                                                           class="form-control font-size-lg-16 shadow-none hero-form font-weight-bold border-0 pl-0"
-                                                           placeholder="city or airport" aria-label="Keyword or title">
+                                                           data-city-input='input[name="city_from"]'
+                                                           data-airport-input='input[name="airport_from"]'
+                                                           class="form-control font-size-lg-16 shadow-none hero-form font-weight-bold border-0 pl-0 location-autocomplete"
+                                                           placeholder="city or airport"
+                                                           aria-label="Keyword or title">
                                                 </div>
                                             </div>
+                                            <input type="hidden"
+                                                   value="{{ $cityFrom ?? '' }}"
+                                                   name="city_from">
+                                            <input type="hidden"
+                                                   value="{{ $airportFrom ?? '' }}"
+                                                   name="airport_from">
                                             <!-- End Input -->
                                         </div>
                                         <div class="col-sm-12 col-lg-2dot3 mb-4 mb-lg-0 ">
@@ -43,11 +52,19 @@
                                                 <div class="input-group border-bottom border-width-2 border-color-1">
                                                     <i class="flaticon-pin-1 d-flex align-items-center mr-2 text-primary font-weight-semi-bold"></i>
                                                     <input type="text"
-                                                           class="form-control font-size-lg-16 shadow-none hero-form font-weight-bold border-0 pl-0"
+                                                           data-city-input='input[name="city_to"]'
+                                                           data-airport-input='input[name="airport_to"]'
+                                                           class="form-control font-size-lg-16 shadow-none hero-form font-weight-bold border-0 pl-0 location-autocomplete"
                                                            placeholder="city or airport" aria-label="Keyword or title">
                                                 </div>
                                             </div>
                                             <!-- End Input -->
+                                            <input type="hidden"
+                                                   name="city_to"
+                                                   value="{{ $cityTo ?? '' }}">
+                                            <input type="hidden"
+                                                   name="airport_to"
+                                                   value="{{ $airportTo ?? '' }}">
                                         </div>
 
                                         <div class="col-sm-12 col-lg-3 mb-4 mb-lg-0 ">
@@ -63,9 +80,9 @@
                                                     <input class="js-range-datepicker font-size-lg-16 shadow-none font-weight-bold form-control hero-form bg-transparent  border-0"
                                                            type="date"
                                                            data-rp-wrapper="#datepickerWrapperFromOne"
-                                                           data-rp-type="range"
+                                                           data-rp-type="single"
                                                            data-rp-date-format="M d / Y"
-                                                           data-rp-default-date='["Jul 7 / 2020", "Aug 25 / 2020"]'>
+                                                           data-rp-default-date='["Jul 7 / 2020"]'>
                                                 </div>
                                                 <!-- End Datepicker -->
                                             </div>
